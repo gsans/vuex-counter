@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Counter :total="total" :overflow="overflow"
+    <Counter :total="total" 
       @increment="increment" 
       @decrement="decrement" 
       @reset="reset"
@@ -9,6 +9,7 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex';
 import Counter from "./components/Counter";
 
 export default {
@@ -17,23 +18,10 @@ export default {
     Counter
   },
   methods: {
-    increment() {
-      this.$store.dispatch("increment");
-    },
-    decrement() {
-      this.$store.dispatch("decrement");
-    },
-    reset() {
-      this.$store.dispatch("reset", { value: 0 });
-    },
+    ...mapActions(['increment', 'decrement', 'reset'])
   },
   computed: {
-    total() {
-      return this.$store.getters.total;
-    },
-    overflow() {
-      return this.$store.getters.overflow(10);
-    }
+    ...mapGetters({ total: 'total' })
   }
 };
 </script>
@@ -43,9 +31,9 @@ export default {
 @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono);
 
 * {
-  -webkit-font-smoothing: antialiased !important;
+  -webkit-font-smoothing: antialiased !important; 
   -moz-osx-font-smoothing: grayscale;
-  text-shadow: 0px 0px 3px rgba(0, 0, 0, 0.2);
+  text-shadow: 0px 0px 3px rgba(0,0,0,0.2);
   font-family: "Ubuntu";
 }
 </style>
