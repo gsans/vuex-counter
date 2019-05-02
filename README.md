@@ -1,4 +1,4 @@
-# test-app
+# vuex-counter
 
 ## Project setup
 ```
